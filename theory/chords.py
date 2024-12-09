@@ -99,7 +99,6 @@ class Chords(Scale):
                 chord_fifth = self.scale[major_fifth]
                 chord = chord_root + chord_third + chord_fifth
                 scale_chords[self.chord_name] = chord 
-            print(scale_chords)
         if self.scale_name == tc.pos_to_scale_modes.get(2): 
             pass
         if self.scale_name == tc.pos_to_scale_modes.get(3): 
@@ -113,6 +112,7 @@ class Chords(Scale):
         # i ii* III iv v VI VII if minor 
         if self.scale_name == tc.pos_to_scale_modes.get(7): 
             pass
+        return scale_chords
         
 
     def __init__(self, scale):

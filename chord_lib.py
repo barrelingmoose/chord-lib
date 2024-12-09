@@ -1,6 +1,8 @@
+import guitar.guitar
 import theory.chords
 import theory.theory_constants as tc 
 import theory
+import guitar.guitar as gg
 
 
 if __name__ == "__main__": 
@@ -11,3 +13,9 @@ if __name__ == "__main__":
 
     a_chords = theory.chords.Chords(a_scale)
     c_chords = theory.chords.Chords(c_scale)
+
+    midwest_tuning = "FACGCE"
+    standard_tuning = "EADGBE"
+    my_guitar = gg.Guitar()
+    my_guitar.intitialize()
+    my_guitar.find_chord(c_scale, "C Major")
