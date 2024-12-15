@@ -16,6 +16,7 @@ if __name__ == "__main__":
 
     midwest_tuning = "FACGCE"
     standard_tuning = "EADGBE"
-    my_guitar = gg.Guitar()
+    my_guitar = gg.Guitar(midwest_tuning)
     my_guitar.intitialize()
+    c_chords.display_chords()
     my_guitar.find_chord(c_scale, "C Major")

@@ -127,6 +127,10 @@ class Chords(Scale):
         self.chord_name = ""
         self.scale_chords = self.chords(scale)
 
+    def display_chords(self):
+        for chords in self.scale_chords.keys():
+            print(chords)
+
     
         
 

@@ -10,6 +10,17 @@ class Guitar:
         self.fretboard = {}
         self.tuning_list = list(tuning)
 
+    def fretboard_display(self, note_list, filter=[]): 
+        fret_note = "|"
+        for note in note_list:
+            if not filter: 
+                fret_note += "---{}---|".format(note)
+            elif note in filter: 
+                fret_note += "---{}---|".format(note)
+            else:
+                fret_note += "-------|"
+        print(fret_note)
+
     def get_notes(self, tuning):
         for note in self.tuning_list: 
             string_notes = []
@@ -23,6 +34,8 @@ class Guitar:
                     string_notes.append(next_note)
             string_notes += string_notes
             self.fretboard[note] = string_notes
+        
+            self.fretboard_display(string_notes)
     
     def find_notes(self, lst, value): 
         return [i for i, x in enumerate(lst) if x == value]
@@ -37,29 +50,15 @@ class Guitar:
         return True
 
     def find_chord(self, scale, search):
-        note_count = 0
         chords = theory.chords.Chords(scale)
         note_list = list(chords.scale_chords.get(search))
-        for notes in note_list: 
-            string_pos = 0
-            for guitar_string in self.tuning_list: 
-                cur_string = self.fretboard.get(guitar_string)
-                note_positions = self.find_notes(cur_string, notes)
-                if string_pos == 1 and note_count == 0:
-                    print(f"{guitar_string}:{notes}:{self.find_notes(cur_string, notes)}")
-                    root_note = note_positions[0]
-                if string_pos != 1 and note_count != 0:
-                    note_options = self.find_notes(cur_string, notes)
-                    for options in note_options: 
-                        if abs(options - root_note) < 4:
-                            print(f"{guitar_string}:{notes}:{options}")
-                string_pos += 1
-            note_count += 1
+        print("***{} Voicings***".format(search))
+        for items in self.tuning_list:
+            self.fretboard_display(self.fretboard.get(items), note_list)
         
 
     def intitialize(self):
         self.get_notes(self.tuning)
-        print(self.fretboard)
 
 
         
