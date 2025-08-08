@@ -1,4 +1,5 @@
 import theory.theory_constants as tc
+import tkinter as tk
 
 class Note: 
     def __init__(self, name):
@@ -127,9 +128,9 @@ class Chords(Scale):
         self.chord_name = ""
         self.scale_chords = self.chords(scale)
 
-    def display_chords(self):
+    def display_chords(self, text_widget):
         for chords in self.scale_chords.keys():
-            print(chords)
+            text_widget.insert(tk.END, chords)
 
     
         

@@ -1,5 +1,6 @@
 import theory.chords
 import theory.theory_constants as tc
+import tkinter as tk
 
 class Guitar:
     def __init__(self, tuning="EADGBE"): 
@@ -10,7 +11,7 @@ class Guitar:
         self.fretboard = {}
         self.tuning_list = list(tuning)
 
-    def fretboard_display(self, note_list, filter=[]): 
+    def fretboard_display(self, note_list, text_widget, filter=[]): 
         fret_note = "|"
         for note in note_list:
             if not filter: 
@@ -19,7 +20,7 @@ class Guitar:
                 fret_note += "---{}---|".format(note)
             else:
                 fret_note += "-------|"
-        print(fret_note)
+        text_widget.insert(tk.END, fret_note)
 
     def get_notes(self, tuning):
         for note in self.tuning_list: 
@@ -35,7 +36,7 @@ class Guitar:
             string_notes += string_notes
             self.fretboard[note] = string_notes
         
-            self.fretboard_display(string_notes)
+            # self.fretboard_display(string_notes)
     
     def find_notes(self, lst, value): 
         return [i for i, x in enumerate(lst) if x == value]
@@ -49,12 +50,12 @@ class Guitar:
     def fourth_string_as_root(): 
         return True
 
-    def find_chord(self, scale, search):
+    def find_chord(self, scale, search, text_widget):
         chords = theory.chords.Chords(scale)
         note_list = list(chords.scale_chords.get(search))
         print("***{} Voicings***".format(search))
         for items in self.tuning_list:
-            self.fretboard_display(self.fretboard.get(items), note_list)
+            self.fretboard_display(self.fretboard.get(items), text_widget, note_list)
         
 
     def intitialize(self):
